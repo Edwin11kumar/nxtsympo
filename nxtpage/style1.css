@@ -1,0 +1,119 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #fff;
+    background-color: black;
+}
+
+@keyframes moveStars {
+    from {
+        background-position: 0 0, 15px 15px;
+    }
+    to {
+        background-position: 0 100%, 15px calc(15px + 100%);
+    }
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    background-image: 
+        radial-gradient(white 0.5px, transparent 0.3px), /* Small distant stars */
+        radial-gradient(white 1px, transparent 0.5px), /* Medium stars */
+        radial-gradient(rgba(255, 255, 255, 0.3) 0.5px, transparent 1px); /* Fainter stars */
+    background-size: 30px 30px, 50px 50px, 50px 50px;
+    background-position: 0 0, 15px 15px, 45px 45px;
+    z-index: -1;
+    opacity: 0.3;
+    animation: moveStars 50s ease-out infinite;
+}
+.timeline {
+    margin: 90px auto;
+    width: 560px;
+    left: 0.5%;
+    border-left: 2px solid #ccc;
+    padding: 0 20px 0 30px;
+}
+
+.timeline div {
+    background-color: #fff;
+    padding: 10px 05px;
+    font-size: 16px;
+    color: #000;
+    border: 2px solid blue;
+    line-height: 1.7;
+    position: relative;
+    height: 100;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px #fff;
+    border-radius: 10px;
+}
+.timeline div::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #000;
+    border: 3px solid lime;
+    position: absolute;
+    top: 10px;
+    left: -40px;
+}
+.timeline div::after {
+    content:"";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent burlywood transparent transparent;
+    border-width: 8px;
+    position: absolute;
+    left: -17px;
+    top: 10px;
+}
+.timeline > div {
+    opacity: 0; /* Start elements as invisible */
+    transition: opacity 2s ease-in-out; /* Smooth transition for the fade effect */
+}
+
+@media (max-width: 480px) {
+    .timeline {
+        margin: 05px auto;
+        width: 270px;
+        border-left: 2px solid #ccc;
+        padding: 0 01px 0 30px;
+        margin-left: 10%;
+    }
+    h1 {
+        color: aqua;
+        margin-top: 15%;
+        font-size: 30px;
+        margin-left: 05%;
+    }
+    h2 {
+        font-size: 20px;
+        margin-bottom: 2%;
+    }
+    p {
+        font-size: 12px;
+    }
+}
